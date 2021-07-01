@@ -1,10 +1,12 @@
+package model
+
 class Diretor(
     nome: String,
     documento: String,
     salario: Double,
     senha: Int,
-    val plr:Double
-): FuncionarioAdmin(
+    val plr: Double
+) : FuncionarioAdmin(
     nome,
     documento,
     salario,
@@ -14,7 +16,7 @@ class Diretor(
 
 
     override fun toString(): String {
-        return "Diretor(senha=$senha, plr=$plr) ${super.toString()}"
+        return "model.Diretor(senha=$senha, plr=$plr) ${super.toString()}"
     }
 
 }

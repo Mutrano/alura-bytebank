@@ -1,3 +1,5 @@
+package model
+
 abstract class FuncionarioAdmin(
     nome: String,
     documento: String,
@@ -7,7 +9,7 @@ abstract class FuncionarioAdmin(
     nome = nome,
     documento = documento,
     salario = salario
-),Autenticavel {
+), Autenticavel {
 
     override fun autentica(senha: Int): Boolean {
         return this.senha == senha

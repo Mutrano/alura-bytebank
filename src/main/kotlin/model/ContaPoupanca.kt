@@ -1,3 +1,5 @@
+package model
+
 class ContaPoupanca(
     titular: String,
     numeroConta: Int

@@ -1,3 +1,5 @@
+import model.ContaPoupanca
+
 fun testaComportamentoConta() {
     val contaAlex = ContaPoupanca("Alex", 1)
     contaAlex.deposita(100.0)

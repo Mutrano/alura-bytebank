@@ -1,7 +1,9 @@
+package model
+
 class ContaSalario(
     titular: String,
     numeroConta: Int,
-):Conta(
+) : Conta(
     titular,
     numeroConta,
 )

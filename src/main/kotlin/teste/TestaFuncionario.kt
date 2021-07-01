@@ -1,3 +1,8 @@
+import model.Analista
+import model.CalculadoraBonificacao
+import model.Diretor
+import model.Gerente
+
 fun testaFuncionario() {
     val alex = Analista(
         nome = "Alex",
@@ -26,7 +31,7 @@ fun testaFuncionario() {
         senha = 15,
         plr = 5.0
     )
-    println("Mostrando um Diretor")
+    println("Mostrando um model.Diretor")
     println(teofilo.autentica(123))
     println(teofilo.autentica(15))
     println(teofilo)
@@ -37,7 +42,7 @@ fun testaFuncionario() {
         documento = "156156156161456",
         salario = 7.0,
     )
-    println("Mostrando um Analista")
+    println("Mostrando um model.Analista")
     println(bruna)
     println("Bonificacao da Bruna é ${bruna.bonificacao}")
 

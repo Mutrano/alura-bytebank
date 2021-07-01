@@ -1,8 +1,10 @@
+package model
+
 //construtor padrao
 abstract class ContaComTransferencia(
-     titular: String,
-     numeroConta: Int,
-):Conta(
+    titular: String,
+    numeroConta: Int,
+) : Conta(
     titular,
     numeroConta,
 ) {
