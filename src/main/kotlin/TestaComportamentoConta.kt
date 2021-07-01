@@ -1,9 +1,9 @@
 fun testaComportamentoConta() {
-    val contaAlex = Conta("Alex", 1)
+    val contaAlex = ContaPoupanca("Alex", 1)
     contaAlex.deposita(100.0)
 
     // instancia objeto com named argument
-    val contaFran = Conta(numeroConta = 2, titular = "Fran")
+    val contaFran = ContaPoupanca(numeroConta = 2, titular = "Fran")
     contaFran.deposita(200.0)
 
     mostraConta(contaAlex)
