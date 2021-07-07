@@ -1,3 +1,5 @@
+import br.com.zupacademy.mario.bytebank.exception.FalhaAutenticacaoException
+import br.com.zupacademy.mario.bytebank.exception.SaldoInsuficienteException
 import br.com.zupacademy.mario.bytebank.model.Cliente
 import br.com.zupacademy.mario.bytebank.model.ContaCorrente
 import br.com.zupacademy.mario.bytebank.model.ContaPoupanca
@@ -5,17 +7,17 @@ import br.com.zupacademy.mario.bytebank.model.ContaSalario
 
 fun testaContasDiferentes() {
     val alex = Cliente(
-        nome ="Alex",
+        nome = "Alex",
         documento = "",
         senha = 123
-        )
+    )
     val fran = Cliente(
-        nome="Fran",
+        nome = "Fran",
         documento = "",
         senha = 12345
     )
     val gui = Cliente(
-        nome="Gui",
+        nome = "Gui",
         documento = "",
         senha = 321
     )
@@ -43,15 +45,26 @@ fun testaContasDiferentes() {
     println("Saldo saque corrente: ${contaCorrente.saldo}")
     println("Saldo saque Poupança: ${contaPoupanca.saldo}")
     println("Saldo saque Salario: ${contaSalario.saldo}")
+    try {
+        contaCorrente.transferePara(contaPoupanca, 100.0, 123)
+    } catch (expn: SaldoInsuficienteException) {
+        println("Saldo insuficiente")
 
-    contaCorrente.transferePara(contaPoupanca, 100.0)
+    } catch (expn: FalhaAutenticacaoException) {
+        println("Falha na autenticação")
+    }
     println("Saldo corrente apos transferir para poupança : ${contaCorrente.saldo}")
     println("Saldo Poupança após receber transferência: ${contaPoupanca.saldo}")
+    try {
+        contaPoupanca.transferePara(contaCorrente, 100.0, 1235)
+    } catch (expn: SaldoInsuficienteException) {
+        println("Saldo insuficiente")
+    } catch (expn: FalhaAutenticacaoException) {
+        println("Falha na autenticação")
+    }
 
-    contaPoupanca.transferePara(contaCorrente, 100.0)
     println("Saldo poupança apos transferir para corrente : ${contaPoupanca.saldo}")
     println("Saldo Corrente após receber transferência: ${contaCorrente.saldo}")
-
 
 
 }

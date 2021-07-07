@@ -1,5 +1,8 @@
 package br.com.zupacademy.mario.bytebank.model
 
+import br.com.zupacademy.mario.bytebank.exception.FalhaAutenticacaoException
+import br.com.zupacademy.mario.bytebank.exception.SaldoInsuficienteException
+
 //construtor padrao
 abstract class ContaComTransferencia(
     titular: Cliente,
@@ -7,19 +10,20 @@ abstract class ContaComTransferencia(
 ) : Conta(
     titular,
     numeroConta,
-) {
-    //construtor secundário
-//    constructor(titular : String, numeroConta:Int){
-//        this.titular=titular
-//        this.numeroConta=numeroConta
-//    }
-    fun transferePara(destino: ContaComTransferencia, valor: Double): Boolean {
-        if (this.saldo >= valor) {
-            this.saldo -= valor
-            destino.saldo += valor
-            return true
+),Autenticavel {
+    override fun autentica(senha: Int): Boolean {
+        return titular.autentica(senha)
+    }
+
+    fun transferePara(destino: ContaComTransferencia, valor: Double,senha:Int) {
+        if (this.saldo < valor) {
+            throw SaldoInsuficienteException()
         }
-        return false
+        if(!autentica(senha)){
+            throw FalhaAutenticacaoException()
+        }
+        this.saldo -= valor
+        destino.saldo += valor
 
     }
 

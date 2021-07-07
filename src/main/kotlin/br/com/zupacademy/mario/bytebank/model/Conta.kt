@@ -3,7 +3,7 @@ package br.com.zupacademy.mario.bytebank.model
 abstract class Conta(
     val titular: Cliente,
     val numeroConta: Int,
-) {
+){
     init {
         println("Criando conta")
         total++
@@ -15,7 +15,6 @@ abstract class Conta(
             this.saldo += valor
         }
     }
-
     companion object{
         var total:Int =0
             private set

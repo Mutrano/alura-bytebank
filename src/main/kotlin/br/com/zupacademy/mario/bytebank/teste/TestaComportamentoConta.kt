@@ -1,3 +1,5 @@
+import br.com.zupacademy.mario.bytebank.exception.FalhaAutenticacaoException
+import br.com.zupacademy.mario.bytebank.exception.SaldoInsuficienteException
 import br.com.zupacademy.mario.bytebank.model.Cliente
 import br.com.zupacademy.mario.bytebank.model.ContaPoupanca
 import br.com.zupacademy.mario.bytebank.model.Endereco
@@ -54,10 +56,29 @@ fun testaComportamentoConta() {
     println(contaAlex.saldo)
 
     println("Transferencia da Fran para o Alex")
-    if (contaFran.transferePara(contaAlex, 100.0)) {
-        println("Transferencia com sucesso")
-    } else {
-        println("Falha na transferência ")
+    try {
+        contaFran.transferePara(contaAlex,100.0,321)
+        println("Sucesso na transferência")
+
+    }
+    catch (expn : SaldoInsuficienteException){
+        println("Falha na transferência")
+    }
+    catch(expn:FalhaAutenticacaoException){
+        println("Falha na autenticação")
+
+    }
+    println("Transferencia do Alex para a Fran")
+    try {
+        contaAlex.transferePara(contaFran,200.0,123)
+        println("Sucesso na transferência")
+
+    }
+    catch (expn : SaldoInsuficienteException){
+        println("Falha na transferência")
+    }
+    catch (expn : FalhaAutenticacaoException){
+        println("Falha na autenticação")
     }
     println(contaAlex.saldo)
     println(contaFran.saldo)
